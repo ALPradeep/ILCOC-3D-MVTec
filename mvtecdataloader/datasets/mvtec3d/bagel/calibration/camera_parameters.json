@@ -1,0 +1,11 @@
+{
+  "camera_type": "area_scan_division",
+  "focus": 0.0103431,
+  "kappa": -2205.03,
+  "sx": 3.74983e-06,
+  "sy": 3.75e-06,
+  "cx": 252.046,
+  "cy": 450.07,
+  "image_width": 800,
+  "image_height": 800
+}

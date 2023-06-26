@@ -13,10 +13,11 @@ from PIL import Image
 from datasets.utils.validation import get_train_val
 from datasets.utils.continual_dataset import ContinualDataset, store_masked_loaders
 from datasets.utils.continual_dataset import get_previous_train_loader
+from torch.utils.data import DataLoader
 from typing import Tuple
 from datasets.transforms.denormalization import DeNormalize
 import torch
-
+from ipdb import set_trace
 '''
 class MyCIFAR10(CIFAR10):
     """
@@ -183,9 +184,14 @@ class SequentialCIFAR10(ContinualDataset):
         # for i in curr_class:
         for i in range(len(class_label)):
 
+            set_trace()
             train_dataset = OCILCIFAR10(class_label[i], class_size_dict[i])
+            train_dataset = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False, num_workers=1,
+                              drop_last=False, pin_memory=True)
+
             if self.args.validation:
                 train_dataset, test_dataset = get_train_val(train_dataset, test_transform, self.NAME)
+                set_trace()
             else:
                 # test_dataset = CIFAR10(base_path() + 'CIFAR10',train=False,
                 # download=True, transform=test_transform)
@@ -250,7 +256,11 @@ class SequentialCIFAR10(ContinualDataset):
         for i in curr_class:
             # for i in range(len(class_label)):
             train_dataset = OCILCIFAR10(class_label[i], class_size_dict[i])
+            train_dataset = DataLoader(dataset=train_dataset, batch_size=1, shuffle=False, num_workers=1,
+                                       drop_last=False, pin_memory=True)
+            set_trace()
             if self.args.validation:
+                set_trace()
                 train_dataset, test_dataset = get_train_val(train_dataset, test_transform, self.NAME)
             else:
                  # test_dataset = CIFAR10(base_path() + 'CIFAR10',train=False,
@@ -270,7 +280,7 @@ class SequentialCIFAR10(ContinualDataset):
                           drop_last=False, pin_memory=True)
         # print(train)
         # train, test = store_masked_loaders(train, test, self)
-        #
+        set_trace()
         return train, test
 
     """def my_mvtec_3d(self, split, class_name, img_size):

@@ -154,7 +154,7 @@ class MVTec3DTest(MVTec3D):
             gt = torch.where(gt > 0.5, 1., .0)
 
         return (img, resized_organized_pc, resized_depth_map_3channel), gt[:1], label
-
+# x,y,z,r,g,b - rgb + d
 
 def get_data_loader(split, class_name, img_size):
     if split in ['train']:
